@@ -28,5 +28,18 @@ module UrlHelper
   end
 
   def get_url_data
+    if params["url"].match(/localhost/)
+      short_url = params["url"][-6..-1]
+    else
+      short_url = params["url"]
+    end
+
+    url = Url.find_by(body: short_url) || Url.find_by(short: short_url)
+
+    if url
+      {"success": true, "url": url.body, "click_count": url.click_count}
+    else
+      {"success": false, "url": params["url"], "errors": "URL not found"}
+    end
   end
 end

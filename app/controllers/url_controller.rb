@@ -1,6 +1,6 @@
 class UrlController < ApplicationController
   include UrlHelper
-  
+
   def shorten
     render json: shorten_multiple_links
   end
@@ -10,8 +10,8 @@ class UrlController < ApplicationController
   end
 
   def redirect_link
-    @short = params[:short]
-    url = Url.find_by(short: @short)
+    short = params[:short]
+    url = Url.find_by(short: short)
 
     if url
       url.click_count += 1
@@ -19,6 +19,7 @@ class UrlController < ApplicationController
 
       redirect_to url.body
     else
+      @short = "http://localhost:3000/#{short}"
       render "/not_found"
     end
   end
