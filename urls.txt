@@ -1,0 +1,11 @@
+http://google.com
+http://twitter.com
+http://facebook.com
+http://linkedin.com
+http://www.restular.com/
+https://schemadesigner.devbootcamp.com/
+http://ruby-doc.org/core-2.3.0/Enumerable.html
+http://ruby-doc.org/core-2.3.0/Array.html
+https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+http://estherleytush.com/
+http://github.com
