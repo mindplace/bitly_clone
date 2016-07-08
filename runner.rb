@@ -9,6 +9,7 @@ def shorten_link(url)
   params = {"url": url}
   uri.query = URI.encode_www_form(params)
   JSON.parse(Net::HTTP.get(uri))
+  binding.pry
 end
 
 def shorten_multiple_links(link_array)

@@ -15,7 +15,6 @@ module UrlActions
       json = {"success": true, "url": link, "short": "#{ENV["host"]}#{url.short}"}
     else
       url = Url.new(body: link)
-      url.generate_short
 
       if url.save
         json = {"success": true, "url": link, "short": "#{ENV["host"]}#{url.short}"}

@@ -1,15 +1,15 @@
 class UrlController < ApplicationController
   include UrlActions
 
-  def shorten
+  def create
     render json: shorten_multiple_links
   end
 
-  def data
+  def index
     render json: get_url_data
   end
 
-  def redirect_link
+  def show
     short = params[:short]
     url = Url.find_by(short: short)
 
