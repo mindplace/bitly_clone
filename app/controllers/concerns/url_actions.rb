@@ -1,4 +1,4 @@
-module UrlHelper
+module UrlActions
   def shorten_multiple_links
     if params["urls"]
       json = {"urls": []}
@@ -12,13 +12,13 @@ module UrlHelper
   def shorten_single_link(link)
     url = Url.find_by(body: link)
     if url
-      json = {"success": true, "url": link, "short": "http://localhost:3000/#{url.short}"}
+      json = {"success": true, "url": link, "short": "#{ENV["host"]}#{url.short}"}
     else
       url = Url.new(body: link)
       url.generate_short
 
       if url.save
-        json = {"success": true, "url": link, "short": "http://localhost:3000/#{url.short}"}
+        json = {"success": true, "url": link, "short": "#{ENV["host"]}#{url.short}"}
       else
         json = {"success": false, "url": link, "errors": url.errors_as_string}
       end

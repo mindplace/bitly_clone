@@ -1,5 +1,5 @@
 class UrlController < ApplicationController
-  include UrlHelper
+  include UrlActions
 
   def shorten
     render json: shorten_multiple_links
@@ -19,7 +19,7 @@ class UrlController < ApplicationController
 
       redirect_to url.body
     else
-      @short = "http://localhost:3000/#{short}"
+      @short = "#{ENV["host"]}#{short}"
       render "/not_found"
     end
   end
