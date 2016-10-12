@@ -9,7 +9,6 @@ def shorten_link(url)
   params = {"url": url}
   uri.query = URI.encode_www_form(params)
   JSON.parse(Net::HTTP.get(uri))
-  binding.pry
 end
 
 def shorten_multiple_links(link_array)
@@ -31,6 +30,10 @@ def check_data(url)
   JSON.parse(Net::HTTP.get(uri))
 end
 
+def make_http_request_to_short_url(short)
+  uri = URI.parse("http://localhost:3000/" + short)
+  Net::HTTP.get(uri)
+end
 
 # test data
 urls = [
@@ -42,21 +45,18 @@ urls = [
   "https://coderwall.com/p/uh8kiw/pass-arrays-objects-via-querystring-the-rack-rails-way",
 ]
 
-single = urls.pop
+single = urls.sample
 response_from_single = shorten_link(single)
 
 binding.pry
-
 
 response_from_multiple = shorten_multiple_links(urls.sample(3))
 sample_short_url = response_from_multiple["urls"].sample["short"]
 
 binding.pry
 
-
-uri = URI.parse(sample_short_url)
 10.times do
-  Net::HTTP.get(uri)
+  make_http_request_to_short_url(sample_short_url)
 end
 
 data = check_data(sample_short_url)

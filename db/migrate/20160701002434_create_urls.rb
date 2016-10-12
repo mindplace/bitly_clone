@@ -8,7 +8,6 @@ class CreateUrls < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :urls, :body, unique: true
     add_index :urls, :short, unique: true
   end
 end

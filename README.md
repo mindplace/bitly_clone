@@ -8,7 +8,7 @@ Checkout the [runner file](https://github.com/mindplace/bitly_clone/blob/master/
 ### Shortening a single URL:
 Make a get request to http://localhost:3000/shorten + your params:
 ```
- GET http://localhost:3000/shorten?url=https%3A%2F%2Fgoogle.com
+ GET http://localhost:3000/shorten?url=https://google.com
 ```
 
 What you'll get back:
@@ -24,7 +24,7 @@ What you'll get back:
 ### Looking at click data:
 Make a get request to http://localhost:3000/data + your link (doesn't matter whether it was the shortened link or the original one):
 ```
-GET http://localhost:3000/data?url=https%3A%2F%2Fgoogle.com
+GET http://localhost:3000/data?url=https://google.com
 ```
 
 What you'll get back:

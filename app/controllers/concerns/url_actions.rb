@@ -10,30 +10,24 @@ module UrlActions
   end
 
   def shorten_single_link(link)
-    url = Url.find_by(body: link)
-    if url
+    url = Url.new(body: link)
+
+    if url.save
       json = {"success": true, "url": link, "short": "#{ENV["host"]}#{url.short}"}
     else
-      url = Url.new(body: link)
-
-      if url.save
-        json = {"success": true, "url": link, "short": "#{ENV["host"]}#{url.short}"}
-      else
-        json = {"success": false, "url": link, "errors": url.errors_as_string}
-      end
+      json = {"success": false, "url": link, "errors": url.errors_as_string}
     end
-
-    json
   end
 
   def get_url_data
+    # don't recall the design decision for this - revise
     if params["url"].match(/localhost/)
       short_url = params["url"][-6..-1]
     else
       short_url = params["url"]
     end
 
-    url = Url.find_by(body: short_url) || Url.find_by(short: short_url)
+    url = Url.find_by(short: short_url)
 
     if url
       {"success": true, "url": url.body, "click_count": url.click_count}

@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20160701002434) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "urls", ["body"], name: "index_urls_on_body", unique: true, using: :btree
   add_index "urls", ["short"], name: "index_urls_on_short", unique: true, using: :btree
 
 end
