@@ -10,8 +10,7 @@ class UrlController < ApplicationController
   end
 
   def show
-    short = params[:short]
-    url = Url.find_by(short: short)
+    url = Url.find_by(short: params["short"])
 
     if url
       url.click_count += 1
@@ -19,7 +18,8 @@ class UrlController < ApplicationController
 
       redirect_to url.body
     else
-      @short = "#{ENV["host"]}#{short}"
+      # assumption that request was made via a browser - but if that's not the case?
+      @short = url.complete_short
       render "/not_found"
     end
   end

@@ -31,7 +31,7 @@ def check_data(url)
 end
 
 def make_http_request_to_short_url(short)
-  uri = URI.parse("http://localhost:3000/" + short)
+  uri = URI.parse(short)
   Net::HTTP.get(uri)
 end
 

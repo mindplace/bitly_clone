@@ -17,13 +17,16 @@ ActiveRecord::Schema.define(version: 20160701002434) do
   enable_extension "plpgsql"
 
   create_table "urls", force: :cascade do |t|
-    t.string   "body",                    null: false
-    t.string   "short",                   null: false
-    t.integer  "click_count", default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "body",                       null: false
+    t.string   "base_url",                   null: false
+    t.string   "short",                      null: false
+    t.string   "complete_short",             null: false
+    t.integer  "click_count",    default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
+  add_index "urls", ["complete_short"], name: "index_urls_on_complete_short", unique: true, using: :btree
   add_index "urls", ["short"], name: "index_urls_on_short", unique: true, using: :btree
 
 end
