@@ -18,7 +18,7 @@ module UrlActions
       json = {"success": false, "original": link, "errors": url.errors_as_string}
     end
   end
-
+ 
   def get_url_data
     url = Url.find_by(complete_short: params["url"])
 

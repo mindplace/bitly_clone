@@ -19,8 +19,8 @@ class UrlController < ApplicationController
       redirect_to url.body
     else
       # assumption that request was made via a browser - but if that's not the case?
-      @short = url.complete_short
-      render "/not_found"
+      @short = params["short"]
+      render "not_found"
     end
   end
 end
